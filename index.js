@@ -470,7 +470,7 @@ app.get("/truyentranh/:character", (req, resp) => {
           .find(".detail-info .list-info .status p:nth-child(2)")
           .text();
         const views = $(this)
-          .find(".detail-info .list-info li:last-child")
+          .find(".detail-info .list-info li:last-child p:nth-child(2)")
           .text();
 
         const follow = $(this).find(".detail-info .follow span b").text();
