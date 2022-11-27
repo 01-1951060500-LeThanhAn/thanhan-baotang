@@ -45,6 +45,53 @@ app.get("/truyentranh", (req, resp) => {
         });
       });
 
+      $(".pagination", html).each(function () {
+        const countPages = $(this).find("li:nth-child(6)").text();
+
+        data.push({
+          thumbnails: thumbnails,
+          countPages: +countPages,
+        });
+      });
+
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
+
+app.get("/truyen/category/top-ngay", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=13&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
+
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh/" +
+            url.split("/truyen-tranh")[1],
+
+          image: image,
+        });
+      });
+
       data.push({
         thumbnails: thumbnails,
       });
@@ -60,383 +107,341 @@ app.get("/truyentranh", (req, resp) => {
   }
 });
 
-// app.get("/truyen/category/top-ngay", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=13&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-tuan", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=12&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/category/top-tuan", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=12&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-thang", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=11&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/category/top-thang", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=11&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-all", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=10&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/category/top-all", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=10&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-follow", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=20&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/category/top-follow", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=20&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-comment", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=25&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/category/top-comment", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=25&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-truyen-moi", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=15&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/category/top-truyen-moi", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=15&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-chapter", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=30&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/category/top-chapter", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=30&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
+app.get("/truyen/category/top-update", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=0&page=1&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
 
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
 
-//           image: image,
-//         });
-//       });
+          image: image,
+        });
+      });
 
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
+      data.push({
+        thumbnails: thumbnails,
+      });
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
-
-// app.get("/truyen/category/top-update", (req, resp) => {
-//   const page = req.query.page;
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
-//   const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=0&page=1&page=${page}`;
-//   try {
-//     axios(url).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".image", html).each(function () {
-//         const name = $(this).find("a img").attr("alt");
-//         const url = $(this).find("a").attr("href");
-//         const image = $(this).find("img").attr("data-src");
-//         const slug = url.split("/truyen-tranh")[1];
-
-//         thumbnails.push({
-//           name: name,
-//           slug: slug.replace("/", ""),
-//           url:
-//             "https://comic-api.vercel.app/comic" +
-//             url.split("/truyen-tranh")[1],
-
-//           image: image,
-//         });
-//       });
-
-//       data.push({
-//         thumbnails: thumbnails,
-//       });
-
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
 app.get("/truyentranh/:character", (req, resp) => {
   let url = "https://baotangtruyen1.com/truyen-tranh/" + req.params.character;
@@ -566,7 +571,7 @@ app.get("/comic/:nextLinks/:idLinks/:id", (req, resp) => {
           newHref: newHref,
           nextHref: nextHref,
           idHref: idHref,
-          demo: `https://thanh-baotang.vercel.app/comic/${newHref}/${nextHref}/${idHref}`,
+          demo: `https://thanhan-baotang.vercel.app/comic/${newHref}/${nextHref}/${idHref}`,
         });
       });
       detailChapter.push({
@@ -581,78 +586,127 @@ app.get("/comic/:nextLinks/:idLinks/:id", (req, resp) => {
   }
 });
 
-// app.get("/truyen/the-loai", (req, resp) => {
-//   const genres = [];
+app.get("/truyen/the-loai", (req, resp) => {
+  const genres = [];
 
-//   try {
-//     axios(`https://baotangtruyen1.com/home/`).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".menu-top ul li:nth-child(3) .layer-2 ul li", html).each(function () {
-//         const titles = $(this).find("a").attr("href");
-//         const name = $(this).find("a").text();
-//         genres.push({
-//           params: titles.split("/tim-truyen")[1].replace("/", ""),
-//           name: name,
-//         });
-//       });
+  try {
+    axios(`https://baotangtruyen1.com/home/`).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".dropdown-menu .clearfix .nav li", html).each(function () {
+        const titles = $(this).find("a").attr("href");
+        const name = $(this).find("a").text();
+        genres.push({
+          params: titles.split("/tim-truyen")[1].replace("/", ""),
+          name: name,
+        });
+      });
 
-//       resp.status(200).json(genres);
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+      resp.status(200).json(genres);
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-// app.get("/truyen/the-loai/:action", (req, resp) => {
-//   let url = "https://baotangtruyen1.com/home/" + req.params.action;
-//   const page = Number(req.query.page);
-//   const limit = Number(req.query.limit);
-//   const thumbnails = [];
-//   const data = [];
+app.get("/truyen/the-loai/:action", (req, resp) => {
+  const page = Number(req.query.page);
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  let url = `https://baotangtruyen1.com/tim-truyen/${req.params.action}?status=-1&sort=0&page=${page}`;
+  console.log(url);
 
-//   try {
-//     axios(`${url}?page=${page}`).then((res) => {
-//       const html = res.data;
-//       const $ = cheerio.load(html);
-//       $(".item-manga .item .image-item", html).each(function () {
-//         const name = $(this).find("a").attr("title");
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $("figure", html).each(function () {
+        const name = $(this).find(".image a").attr("title");
+        const image =
+          // $(this).find(".image-item a img").attr("src") ||
+          $(this).find(".image a img").attr("data-src");
+        const url = $(this).find(".image a").attr("href");
+        const slug = String(url).split("/truyen-tranh")[1].replace("/", "");
 
-//         const image = $(this).find("a img").attr("src");
-//         const url = $(this).find("a").attr("href");
-//         const slug = String(url).split("/truyen-tranh")[1];
-//         const prev = String(slug).split("/")[1];
-//         const next = String(slug).split("/")[2];
+        thumbnails.push({
+          name: name,
+          slug: slug,
+          url: "https://thanhan-baotang.vercel.app" + "/" + slug,
 
-//         thumbnails.push({
-//           name: name,
-//           prev: prev,
-//           next: next,
-//           url: "https://thanh-baotang.vercel.app/comic" + slug,
+          image: image,
+        });
+      });
 
-//           image: image,
-//         });
-//       });
+      $(".pagination", html).each(function () {
+        const countPages = $(this).find("li:nth-child(6)").text();
 
-//       $(".pagination", html).each(function () {
-//         const count = $(this).find(".hidden-xs > a").text();
+        data.push({
+          thumbnails: thumbnails,
+          countPages: +countPages,
+        });
+      });
 
-//         data.push({
-//           thumbnails: thumbnails,
-//           countPages: +count,
-//         });
-//       });
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
-//       if (limit && limit > 0) {
-//         resp.status(200).json(data.slice(0, limit));
-//       } else {
-//         resp.status(200).json(data);
-//       }
-//     });
-//   } catch (error) {
-//     resp.status(500).json(error);
-//   }
-// });
+app.get("/search/:keyword", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?keyword=${req.params.keyword
+    .toLowerCase()
+    .replace(/\s/g, "+")}&page=${page}`;
+  console.log(url);
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $("figure", html).each(function () {
+        const name = $(this).find(".image a").attr("title");
+        const image =
+          // $(this).find(".image-item a img").attr("src") ||
+          $(this).find(".image a img").attr("data-src");
+        const url = $(this).find(".image a").attr("href");
+        const slug = String(url).split("/truyen-tranh")[1].replace("/", "");
+
+        thumbnails.push({
+          name: name,
+          slug: slug,
+          url: "https://thanhan-baotang.vercel.app/truyentranh" + "/" + slug,
+
+          image: image,
+        });
+      });
+
+      $(".pagination", html).each(function () {
+        const countPages = $(this).find("li:nth-child(6)").text();
+
+        data.push({
+          thumbnails: thumbnails,
+          countPages: +countPages,
+        });
+      });
+
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
 
 //PORT
 app.listen(process.env.PORT || 8000, () => {
