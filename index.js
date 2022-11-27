@@ -39,7 +39,7 @@ app.get("/truyentranh", (req, resp) => {
         thumbnails.push({
           name: name,
           slug: slug,
-          url: "https://thanh-baotang.vercel.app/truyentranh" + "/" + slug,
+          url: "https://thanhan-baotang.vercel.app/truyentranh" + "/" + slug,
 
           image: image,
         });
@@ -501,7 +501,7 @@ app.get("/truyentranh/:character", (req, resp) => {
             nextLinks: nextLinks,
             idLinks: idLinks,
             demo:
-              "https://thanh-baotang.vercel.app/comic" +
+              "https://thanhan-baotang.vercel.app/comic" +
               "/" +
               nextLinks +
               "/" +
