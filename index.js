@@ -446,7 +446,7 @@ app.get("/truyen/category/top-update", (req, resp) => {
 app.get("/truyentranh/:character", (req, resp) => {
   let url = "https://baotangtruyen1.com/truyen-tranh/" + req.params.character;
   const characters = [];
-
+  const data = [];
   const listChapters = [];
   const actions = [];
 
@@ -527,11 +527,15 @@ app.get("/truyentranh/:character", (req, resp) => {
           follow: follow,
           actions: actions,
           description: description,
-          listChapters: listChapters,
         });
       });
 
-      resp.status(200).json(characters);
+      data.push({
+        thumbnails: characters,
+        listChapters: listChapters,
+      });
+
+      resp.status(200).json(data);
     });
   } catch (err) {
     resp.status(500).json(err);
