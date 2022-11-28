@@ -443,6 +443,90 @@ app.get("/truyen/category/top-update", (req, resp) => {
   }
 });
 
+app.get("/truyen/category/completing", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=1&sort=0&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
+
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
+
+          image: image,
+        });
+      });
+
+      data.push({
+        thumbnails: thumbnails,
+      });
+
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
+
+app.get("/truyen/category/completed", (req, resp) => {
+  const page = req.query.page;
+  const limit = Number(req.query.limit);
+  const thumbnails = [];
+  const data = [];
+  const url = `https://baotangtruyen1.com/tim-truyen?status=2&sort=0&page=${page}`;
+  try {
+    axios(url).then((res) => {
+      const html = res.data;
+      const $ = cheerio.load(html);
+      $(".image", html).each(function () {
+        const name = $(this).find("a img").attr("alt");
+        const url = $(this).find("a").attr("href");
+        const image = $(this).find("img").attr("data-src");
+        const slug = url.split("/truyen-tranh")[1];
+
+        thumbnails.push({
+          name: name,
+          slug: slug.replace("/", ""),
+          url:
+            "https://thanhan-baotang.vercel.app/truyentranh" +
+            url.split("/truyen-tranh")[1],
+
+          image: image,
+        });
+      });
+
+      data.push({
+        thumbnails: thumbnails,
+      });
+
+      if (limit && limit > 0) {
+        resp.status(200).json(data.slice(0, limit));
+      } else {
+        resp.status(200).json(data);
+      }
+    });
+  } catch (error) {
+    resp.status(500).json(error);
+  }
+});
+
 app.get("/truyentranh/:character", (req, resp) => {
   let url = "https://baotangtruyen1.com/truyen-tranh/" + req.params.character;
   const characters = [];
