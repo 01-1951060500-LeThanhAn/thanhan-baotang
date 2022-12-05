@@ -39,7 +39,7 @@ app.get("/truyentranh", (req, resp) => {
         thumbnails.push({
           name: name,
           slug: slug,
-          url: "https://thanhan-baotang.vercel.app/truyentranh" + "/" + slug,
+          url: "https://thanhan.vercel.app/truyentranh" + "/" + slug,
 
           image: image,
         });
@@ -85,7 +85,7 @@ app.get("/truyen/category/top-ngay", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh/" +
+            "https://thanhan.vercel.app/truyentranh/" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -127,7 +127,7 @@ app.get("/truyen/category/top-tuan", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -169,7 +169,7 @@ app.get("/truyen/category/top-thang", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -211,7 +211,7 @@ app.get("/truyen/category/top-all", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -253,7 +253,7 @@ app.get("/truyen/category/top-follow", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -295,7 +295,7 @@ app.get("/truyen/category/top-comment", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -337,7 +337,7 @@ app.get("/truyen/category/top-truyen-moi", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -379,7 +379,7 @@ app.get("/truyen/category/top-chapter", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -421,7 +421,7 @@ app.get("/truyen/category/top-update", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -463,7 +463,7 @@ app.get("/truyen/category/completing", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -505,7 +505,7 @@ app.get("/truyen/category/completed", (req, resp) => {
           name: name,
           slug: slug.replace("/", ""),
           url:
-            "https://thanhan-baotang.vercel.app/truyentranh" +
+            "https://thanhan.vercel.app/truyentranh" +
             url.split("/truyen-tranh")[1],
 
           image: image,
@@ -590,7 +590,7 @@ app.get("/truyentranh/:character", (req, resp) => {
             nextLinks: nextLinks,
             idLinks: idLinks,
             demo:
-              "https://thanhan-baotang.vercel.app/comic" +
+              "https://thanhan.vercel.app/comic" +
               "/" +
               nextLinks +
               "/" +
@@ -659,7 +659,7 @@ app.get("/comic/:nextLinks/:idLinks/:id", (req, resp) => {
           newHref: newHref,
           nextHref: nextHref,
           idHref: idHref,
-          demo: `https://thanhan-baotang.vercel.app/comic/${newHref}/${nextHref}/${idHref}`,
+          demo: `https://thanhan.vercel.app/comic/${newHref}/${nextHref}/${idHref}`,
         });
       });
       detailChapter.push({
@@ -720,7 +720,7 @@ app.get("/truyen/the-loai/:action", (req, resp) => {
         thumbnails.push({
           name: name,
           slug: slug,
-          url: "https://thanhan-baotang.vercel.app/truyentranh" + "/" + slug,
+          url: "https://thanhan.vercel.app/truyentranh" + "/" + slug,
 
           image: image,
         });
@@ -770,7 +770,7 @@ app.get("/search/:keyword", (req, resp) => {
         thumbnails.push({
           name: name,
           slug: slug,
-          url: "https://thanhan-baotang.vercel.app/truyentranh" + "/" + slug,
+          url: "https://thanhan.vercel.app/truyentranh" + "/" + slug,
 
           image: image,
         });
