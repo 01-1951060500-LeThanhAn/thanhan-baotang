@@ -23,7 +23,7 @@ app.get("/truyentranh", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/home?page=${page}`;
+  const url = `https://baotangtruyenpro.com/home?page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -70,7 +70,7 @@ app.get("/truyen/category/top-ngay", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=13&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=13&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -112,7 +112,7 @@ app.get("/truyen/category/top-tuan", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=12&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=12&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -154,7 +154,7 @@ app.get("/truyen/category/top-thang", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=11&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=11&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -196,7 +196,7 @@ app.get("/truyen/category/top-all", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=10&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=10&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -238,7 +238,7 @@ app.get("/truyen/category/top-follow", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=20&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=20&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -280,7 +280,7 @@ app.get("/truyen/category/top-comment", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=25&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=25&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -322,7 +322,7 @@ app.get("/truyen/category/top-truyen-moi", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=15&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=15&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -364,7 +364,7 @@ app.get("/truyen/category/top-chapter", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=30&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=30&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -406,7 +406,7 @@ app.get("/truyen/category/top-update", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=-1&sort=0&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=-1&sort=0&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -448,7 +448,7 @@ app.get("/truyen/category/completing", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=1&sort=0&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=1&sort=0&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -490,7 +490,7 @@ app.get("/truyen/category/completed", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?status=2&sort=0&page=${page}`;
+  const url = `https://baotangtruyenpro.com/tim-truyen?status=2&sort=0&page=${page}`;
   try {
     axios(url).then((res) => {
       const html = res.data;
@@ -528,7 +528,7 @@ app.get("/truyen/category/completed", (req, resp) => {
 });
 
 app.get("/truyentranh/:character", (req, resp) => {
-  let url = "https://baotangtruyen1.com/truyen-tranh/" + req.params.character;
+  let url = "https://baotangtruyenpro.com/truyen-tranh/" + req.params.character;
   const characters = [];
   const data = [];
   const listChapters = [];
@@ -627,7 +627,7 @@ app.get("/truyentranh/:character", (req, resp) => {
 });
 
 app.get("/comic/:nextLinks/:idLinks/:id", (req, resp) => {
-  let url = `https://baotangtruyen1.com/truyen-dich/${req.params.nextLinks}/${req.params.idLinks}/${req.params.id}`;
+  let url = `https://baotangtruyenpro.com/truyen-dich/${req.params.nextLinks}/${req.params.idLinks}/${req.params.id}`;
 
   console.log(url);
 
@@ -678,7 +678,7 @@ app.get("/truyen/the-loai", (req, resp) => {
   const genres = [];
 
   try {
-    axios(`https://baotangtruyen1.com/home/`).then((res) => {
+    axios(`https://baotangtruyenpro.com/home/`).then((res) => {
       const html = res.data;
       const $ = cheerio.load(html);
       $(".dropdown-menu .clearfix .nav li", html).each(function () {
@@ -702,7 +702,7 @@ app.get("/truyen/the-loai/:action", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  let url = `https://baotangtruyen1.com/tim-truyen/${req.params.action}?status=-1&sort=0&page=${page}`;
+  let url = `https://baotangtruyenpro.com/tim-truyen/${req.params.action}?status=-1&sort=0&page=${page}`;
   console.log(url);
 
   try {
@@ -751,7 +751,7 @@ app.get("/search/:keyword", (req, resp) => {
   const limit = Number(req.query.limit);
   const thumbnails = [];
   const data = [];
-  const url = `https://baotangtruyen1.com/tim-truyen?keyword=${req.params.keyword
+  const url = `https://baotangtruyenpro.com/tim-truyen?keyword=${req.params.keyword
     .toLowerCase()
     .replace(/\s/g, "+")}&page=${page}`;
   console.log(url);
